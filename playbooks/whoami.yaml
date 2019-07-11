@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: find who is executing
+    command: whoami
+  - name: ping all
+    ping: 
+  - name: find out current directory
+    command: pwd
+  - name: Install "Apache" server
+    apt:
+      name: httpd
+      state: present
+  - name: Start service httpd, if not started
+    service:
+      name: httpd
+      state: started         

@@ -1,0 +1,15 @@
+---
+- hosts: appserver
+  sudo: True
+  tasks: 
+  - name: install updates
+    apt:
+      upgrade: yes
+      update_cache: yes
+  - name: install openjdk 8
+    apt:
+      name: openjdk-8-jdk
+      state: present
+  - name: Import the GPG keys of the Jenkins repository using the wget command
+    shell: "wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -"
+      
